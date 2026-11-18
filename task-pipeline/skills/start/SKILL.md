@@ -31,6 +31,7 @@ Replace each placeholder such as `<prepare command>` with the command the Comman
 ## While implementing
 
 - Follow the instructions; don't redesign. Read the files each step names, and avoid broad exploration.
+- Change files with the Edit and Write tools, not shell commands such as heredocs, `sed` or `echo >`. The tools check each change against the file as you read it.
 - After each step, run its check, then tick the step in instructions.md: `### [ ] 1.` becomes `### [x] 1.`.
 - Keep command output short: run the narrowest test that covers the step, and trim long output (for example `2>&1 | tail -n 40`).
 - If a "Stop and ask if" condition happens, stop and report what you found and what you suggest.
