@@ -8,7 +8,7 @@ Tools for getting more out of Claude Code while spending fewer tokens. This repo
 
 | Tool | Plugin | What it does |
 |---|---|---|
-| [task-pipeline](task-pipeline/) | `task` | Four skills that split a coding task across models: Haiku gathers the context (`/task:prepare`), Opus writes the steps (`/task:instruct`), and Sonnet implements them (`/task:start`). An optional `/task:rewrite` first checks that your request was understood. |
+| [task-pipeline](task-pipeline/) | `task` | Skills that split a coding task across models: Haiku gathers the context (`/task:prepare`), Opus writes the steps (`/task:instruct`), and Sonnet implements them (`/task:start`). An optional `/task:rewrite` first checks that your request was understood. `/task:orchestrate` runs several pieces at once in git worktrees, and asks you the model and effort for every session it starts. |
 
 ## Install
 
@@ -33,6 +33,7 @@ To get updates, run `/plugin marketplace update claude-tools`, or turn on auto-u
 
 - Claude Code. Tested with version 2.1.327.
 - bash and git, on macOS or Linux.
+- python3, for `/task:orchestrate`'s run summaries.
 
 ## Adding a tool
 

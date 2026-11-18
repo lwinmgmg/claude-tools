@@ -16,10 +16,15 @@ jobs:
           task-pipeline/install.sh
           task-pipeline/cloud-setup.sh
           task-pipeline/lib/task.sh
+          task-pipeline/skills/orchestrate/scripts/worker.sh
           task-pipeline/tests/task.test.sh
+          task-pipeline/tests/worker.test.sh
 
       - name: Test task.sh
         run: bash task-pipeline/tests/task.test.sh
+
+      - name: Test worker.sh
+        run: bash task-pipeline/tests/worker.test.sh
 
       - name: Install Claude Code
         run: |

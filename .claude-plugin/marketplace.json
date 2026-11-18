@@ -9,7 +9,7 @@
     {
       "name": "task",
       "source": "./task-pipeline",
-      "description": "Split a coding task across models: Haiku gathers the context, Opus writes the steps, and Sonnet implements them."
+      "description": "Split a coding task across models: Haiku gathers the context, Opus writes the steps, and Sonnet implements them. Or run several pieces at once in git worktrees."
     }
   ]
 }

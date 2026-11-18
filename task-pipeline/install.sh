@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Installs the /rewrite, /prepare, /instruct and /start skills into your
-# personal skills folder (~/.claude/skills). Re-run after changing anything in
-# skills/ or lib/. A folder this script didn't create is never replaced.
+# Installs the /rewrite, /prepare, /instruct, /start and /orchestrate skills
+# into your personal skills folder (~/.claude/skills). Re-run after changing
+# anything in skills/ or lib/. A folder this script didn't create is never
+# replaced.
 set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
@@ -19,8 +20,12 @@ for dir in "$here"/skills/*/; do
   rm -rf "$target"
   mkdir -p "$target/scripts"
   cp "$dir/SKILL.md" "$target/SKILL.md"
-  cp "$here/lib/task.sh" "$target/scripts/task.sh"
-  chmod +x "$target/scripts/task.sh"
+  # -L copies what a link points to, such as the shared lib/task.sh.
+  for file in "${dir%/}"/scripts/*; do
+    [ -e "$file" ] || continue
+    cp -L "$file" "$target/scripts/"
+    chmod +x "$target/scripts/$(basename "$file")"
+  done
   touch "$target/$mark"
   echo "installed /$name -> $target"
 done
