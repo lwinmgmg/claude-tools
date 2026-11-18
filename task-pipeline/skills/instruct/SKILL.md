@@ -22,9 +22,11 @@ Write instructions.md for the current task: a plan concrete enough that a less c
 
 $ARGUMENTS
 
+A placeholder such as `<prepare command>` stands for that command's full name from the Commands line in the task state, such as /task:prepare. Always write the full name in replies.
+
 ## Rules
 
-- No current task, or no brief.md yet: reply `Run /prepare first.` and stop.
+- No current task, or no brief.md yet: reply `Run <prepare command> first.` and stop.
 - If instructions.md already exists, revise it with the user's text instead of starting over, and keep the ticks on steps already done.
 - Work from the brief. Read code only to settle a specific doubt, and then only the lines you need.
 - Put the user's text under Constraints so later steps see it.
@@ -67,4 +69,4 @@ $ARGUMENTS
 ## Reply
 
 Only the Approach and the step titles, then:
-`Review <path to instructions.md>, then run /start (or /start steps 1-3).`
+`Review <path to instructions.md>, then run <start command> (or <start command> steps 1-3).`

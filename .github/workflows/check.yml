@@ -1,0 +1,35 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint shell scripts
+        run: >-
+          shellcheck
+          task-pipeline/install.sh
+          task-pipeline/cloud-setup.sh
+          task-pipeline/lib/task.sh
+          task-pipeline/tests/task.test.sh
+
+      - name: Test task.sh
+        run: bash task-pipeline/tests/task.test.sh
+
+      - name: Install Claude Code
+        run: |
+          curl -fsSL https://claude.ai/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      # The marketplace check doesn't open the plugin's own files, so validate
+      # the plugin folder too.
+      - name: Validate the marketplace and plugin
+        run: |
+          claude --version
+          claude plugin validate .
+          claude plugin validate task-pipeline

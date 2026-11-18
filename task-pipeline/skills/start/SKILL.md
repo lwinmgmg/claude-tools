@@ -20,10 +20,12 @@ allowed-tools:
 
 $ARGUMENTS
 
+A placeholder such as `<prepare command>` stands for that command's full name from the Commands line in the task state, such as /task:prepare. Always write the full name in replies.
+
 ## What to do
 
 - **Current task with instructions.md**: run the steps not yet ticked, in order. The user's text can limit or change the run, for example `steps 1-3` or `skip step 4`.
-- **Current task without instructions.md**: reply `Run /instruct first.` and stop, unless the user's text says to go ahead anyway.
+- **Current task without instructions.md**: reply `Run <instruct command> first.` and stop, unless the user's text says to go ahead anyway.
 - **No current task**: treat the user's text as a small, self-contained task and do it directly. If there's no text, say there's nothing to start.
 
 ## While implementing

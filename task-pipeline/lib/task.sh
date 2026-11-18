@@ -35,19 +35,35 @@ current=""
 finished=""
 newest=1
 if [ -d "$tasks" ]; then
-  # Folder names start with a timestamp, so reverse name order is newest first.
-  while IFS= read -r name; do
+  # Folder names start with a timestamp and a glob lists them in name order,
+  # so walking the list backwards visits the newest task first.
+  dirs=("$tasks"/*/)
+  i=${#dirs[@]}
+  while [ "$i" -gt 0 ]; do
+    i=$((i - 1))
+    dir="${dirs[$i]%/}"
+    name="${dir##*/}"
     spec="$tasks/$name/spec.md"
-    [ -n "$name" ] && [ -f "$spec" ] || continue
+    [ -f "$spec" ] || continue
     if head -n 1 "$spec" | grep -qiE '^status:[[:space:]]*(done|abandoned)'; then
       finished="$name"
       break
     fi
     [ "$newest" = 1 ] && current="$name"
     newest=0
-  done <<EOF
-$(ls -1 "$tasks" 2>/dev/null | sort -r)
-EOF
+  done
+fi
+
+# Command names depend on how the skills were installed. install.sh leaves a
+# marker file in each skill folder, and the commands are /prepare and so on.
+# As a plugin, they're /<plugin name>:prepare.
+skill_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." 2>/dev/null && pwd)"
+if [ -e "$skill_dir/.installed-by-task-pipeline" ]; then
+  prefix="/"
+else
+  plugin="$(sed -n 's/^[[:space:]]*"name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+    "$skill_dir/../../.claude-plugin/plugin.json" 2>/dev/null | head -n 1)"
+  prefix="/${plugin:-task}:"
 fi
 
 echo "Folder for a new task: $tasks/$(date +%Y%m%d-%H%M%S)-<slug>/"
@@ -62,6 +78,7 @@ else
   echo "Current task: none"
 fi
 [ -n "$finished" ] && echo "Last finished task: $tasks/$finished/"
+echo "Commands: ${prefix}rewrite, ${prefix}prepare, ${prefix}instruct, ${prefix}start"
 
 if [ -n "$current" ]; then
   for f in "$@"; do

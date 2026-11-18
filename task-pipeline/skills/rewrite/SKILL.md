@@ -22,6 +22,8 @@ Your only job is to check that the request was understood. Don't read project co
 
 $ARGUMENTS
 
+A placeholder such as `<prepare command>` stands for that command's full name from the Commands line in the task state, such as /task:prepare. Always write the full name in replies.
+
 ## Steps
 
 1. If the user's text is empty, ask what they want and stop.
@@ -52,6 +54,6 @@ $ARGUMENTS
    ```
 
 4. Reply with only the Understanding, Assumptions and Questions, then this line:
-   `Looks right? Run /prepare. Something off? Run /rewrite <correction>.`
+   `Looks right? Run <prepare command>. Something off? Run <rewrite command> <correction>.`
 
 Never invent specifics the user didn't give, such as file names, libraries or numbers. Put them under Questions.

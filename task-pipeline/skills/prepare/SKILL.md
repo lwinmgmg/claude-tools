@@ -24,6 +24,8 @@ You collect facts about the code so that a stronger model can plan this task wit
 
 $ARGUMENTS
 
+A placeholder such as `<prepare command>` stands for that command's full name from the Commands line in the task state, such as /task:prepare. Always write the full name in replies.
+
 ## 1. Settle the task
 
 - **Current task, and the text is empty or is guidance** (where to look, what to focus on): use the current task. Add any guidance to its spec.md under `## Notes for /prepare`.
@@ -42,8 +44,8 @@ $ARGUMENTS
 
   If the text points to a document ("phase 0 from plan.md"), copy that section into `## Spec` word for word, plus any project-wide sections it depends on, such as the stack, conventions or architecture. Leave the rest of the document out. Otherwise restate the request in 2–4 sentences.
 - **The text starts with `new:`**: start a new task as above, even if one is open.
-- **Current task, but the text clearly describes a different task**: stop without exploring and return: `Task <folder> is still open. To start a new one anyway, run /prepare new: <text>`.
-- **No current task and no text**: return `Nothing to prepare. Run /rewrite <request> or /prepare <task>.`
+- **Current task, but the text clearly describes a different task**: stop without exploring and return: `Task <folder> is still open. To start a new one anyway, run <prepare command> new: <text>`.
+- **No current task and no text**: return `Nothing to prepare. Run <rewrite command> <request> or <prepare command> <task>.`
 
 ## 2. Explore
 
@@ -84,4 +86,4 @@ Facts only, no implementation plan. Keep it under about 200 lines.
 
 ## 4. Return
 
-Return only: the task folder path, a one-line summary of the task and its source, how many files are in the map, and the open questions. Don't return the brief. End with `Next: /instruct`.
+Return only: the task folder path, a one-line summary of the task and its source, how many files are in the map, and the open questions. Don't return the brief. End with `Next: <instruct command>`.

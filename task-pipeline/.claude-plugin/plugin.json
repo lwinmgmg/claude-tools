@@ -1,0 +1,9 @@
+{
+  "name": "task",
+  "displayName": "Task pipeline",
+  "description": "Split a coding task across models. /task:rewrite and /task:prepare run on Haiku, /task:instruct on Opus, and /task:start on Sonnet. Each step reads its context from task files, so it starts small.",
+  "author": { "name": "lwinmgmg", "url": "https://github.com/lwinmgmg" },
+  "homepage": "https://github.com/lwinmgmg/claude-tools/tree/master/task-pipeline",
+  "repository": "https://github.com/lwinmgmg/claude-tools",
+  "keywords": ["tokens", "cost", "planning", "workflow", "subagent"]
+}
