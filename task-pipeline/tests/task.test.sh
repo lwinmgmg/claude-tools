@@ -68,7 +68,7 @@ pass_if "exits 0 when the project folder is missing" run "$work/missing"
 
 out="$(bash "$root/skills/prepare/scripts/task.sh" "$project")"
 pass_if "plugin layout: commands have the plugin prefix" \
-  has "$out" "Commands: /task:rewrite, /task:prepare, /task:instruct, /task:start"
+  has "$out" "Commands: <rewrite command> is /task:rewrite, <prepare command> is /task:prepare, <instruct command> is /task:instruct, <start command> is /task:start"
 
 personal="$work/skills/prepare"
 mkdir -p "$personal/scripts"
@@ -76,7 +76,7 @@ cp "$root/lib/task.sh" "$personal/scripts/task.sh"
 touch "$personal/.installed-by-task-pipeline"
 out="$(bash "$personal/scripts/task.sh" "$project")"
 pass_if "install.sh layout: commands have no prefix" \
-  has "$out" "Commands: /rewrite, /prepare, /instruct, /start"
+  has "$out" "Commands: <rewrite command> is /rewrite, <prepare command> is /prepare, <instruct command> is /instruct, <start command> is /start"
 
 if [ "$failures" -eq 0 ]; then
   echo "all tests passed"

@@ -22,7 +22,7 @@ Write instructions.md for the current task: a plan concrete enough that a less c
 
 $ARGUMENTS
 
-A placeholder such as `<prepare command>` stands for that command's full name from the Commands line in the task state, such as /task:prepare. Always write the full name in replies.
+Replace each placeholder such as `<prepare command>` with the command the Commands line in the task state gives for it.
 
 ## Rules
 

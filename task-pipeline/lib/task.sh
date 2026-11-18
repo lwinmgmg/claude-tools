@@ -78,7 +78,7 @@ else
   echo "Current task: none"
 fi
 [ -n "$finished" ] && echo "Last finished task: $tasks/$finished/"
-echo "Commands: ${prefix}rewrite, ${prefix}prepare, ${prefix}instruct, ${prefix}start"
+echo "Commands: <rewrite command> is ${prefix}rewrite, <prepare command> is ${prefix}prepare, <instruct command> is ${prefix}instruct, <start command> is ${prefix}start"
 
 if [ -n "$current" ]; then
   for f in "$@"; do
